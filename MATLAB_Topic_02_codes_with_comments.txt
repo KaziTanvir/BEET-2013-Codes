@@ -1,0 +1,406 @@
+MATLAB - Topic 02
+2D & 3D Plotting in MATLAB
+Extracted code snippets with explanation comments
+
+Source file: MATLAB - Topic 02.pdf
+
+============================================================
+SECTION 1: Creating a Simple 2D Plot
+============================================================
+
+% x is the independent variable vector.
+% It starts at 0, increases by 0.1, and ends at 10.
+x = 0:0.1:10;
+
+% y is the dependent variable vector.
+% Each y value is calculated as sin(x).
+y = sin(x);
+
+% Create a 2D line plot of y against x.
+figure;
+plot(x, y)
+
+% Optional formatting for clarity.
+
+plot(x, y)
+xlabel('x')
+ylabel('sin(x)')
+title('Simple 2D Sine Plot')
+grid on
+
+
+============================================================
+SECTION 2: Customizing 2D Plots
+============================================================
+
+% Create data for plotting.
+x = 0:0.1:10;
+y = sin(x);
+
+% Plot using a red dashed line.
+% '--' means dashed line.
+% 'r' means red color.
+figure;
+plot(x, y, '--r')     % red dashed line
+
+% Add axis labels, title, and grid.
+
+plot(x, y, '--r') 
+xlabel('Time (s)')
+ylabel('Amplitude')
+title('Sine Wave')
+grid on
+
+
+% Plot using blue circle markers connected by a line.
+% 'o' means circle marker.
+% '-' means solid line.
+% 'b' means blue color.
+
+figure;
+plot(x, y, 'o-b')     % blue circles with line
+xlabel('Time (s)')
+ylabel('Amplitude')
+title('Sine Wave with Circle Markers')
+grid on
+
+
+============================================================
+SECTION 3: Plotting Multiple Curves in One Figure
+============================================================
+
+% Create x values from 0 to 10.
+x = 0:0.1:10;
+
+% First curve: sine function.
+y = sin(x);
+
+% Second curve: cosine function.
+y2 = cos(x);
+
+% Plot both curves in the same figure.
+figure;
+plot(x, y, x, y2)
+
+% Add a legend to identify each curve.
+legend('sin(x)', 'cos(x)')
+
+% Add labels, title, and grid.
+xlabel('x')
+ylabel('Function value')
+title('Sine and Cosine Curves')
+grid on
+
+
+============================================================
+SECTION 4: Scatter Plot
+============================================================
+
+% Create x and y values.
+x = 0:0.1:10;
+y = sin(x);
+
+% Create a scatter plot.
+% 50 controls the marker size.
+% 'filled' fills the marker circles.
+figure;
+scatter(x, y, 50, 'filled')
+
+% Add labels, title, and grid.
+xlabel('x')
+ylabel('sin(x)')
+title('Scatter Plot of Sine Wave')
+grid on
+
+
+============================================================
+SECTION 5: Stem Plot
+============================================================
+
+% Create x and y values.
+x = 0:0.1:10;
+y = sin(x);
+
+% Create a stem plot for discrete signals.
+figure;
+stem(x, y)
+
+% Add labels, title, and grid.
+xlabel('x')
+ylabel('sin(x)')
+title('Stem Plot of Sine Wave')
+grid on
+
+
+============================================================
+SECTION 6: Subplots
+============================================================
+
+% Create x values.
+x = 0:0.1:10;
+
+% Divide the figure into 2 rows and 1 column.
+% Select the first subplot.
+figure;
+subplot(2,1,1)
+
+% Plot sine wave in the first subplot.
+plot(x, sin(x))
+title('Sine Wave')
+xlabel('x')
+ylabel('sin(x)')
+grid on
+
+% Select the second subplot.
+subplot(2,1,2)
+
+% Plot cosine wave in the second subplot.
+plot(x, cos(x))
+title('Cosine Wave')
+xlabel('x')
+ylabel('cos(x)')
+grid on
+
+
+============================================================
+SECTION 7: Introduction to 3D Line Plot
+============================================================
+
+% t is the parameter used to generate the 3D curve.
+t = 0:0.1:10;
+
+% x, y, and z are the three coordinates of the 3D line.
+x = sin(t);
+y = cos(t);
+z = t;
+
+% Create a 3D line plot.
+figure;
+plot3(x, y, z)
+
+% Turn on grid for better 3D view.
+grid on
+
+% Add labels for all three axes.
+xlabel('X');
+ylabel('Y');
+zlabel('Z');
+
+% Add a title.
+title('3D Line Plot')
+
+
+============================================================
+SECTION 8: Customizing 3D Surface Plots
+============================================================
+
+% The slide uses surf(X, Y, Z).
+% X, Y, and Z must exist before using surf.
+% Here, meshgrid is used to create X and Y coordinate matrices.
+[X, Y] = meshgrid(-2:0.1:2, -2:0.1:2);
+
+% Create a simple surface.
+% This produces a bowl-shaped surface.
+Z = X.^2 + Y.^2;
+
+% Plot the 3D surface.
+figure;
+surf(X, Y, Z)
+
+% Smooth the surface color shading.
+shading interp       % smooth shading
+
+% Apply the jet color map.
+colormap jet         % color map
+
+% Display color scale.
+colorbar             % display color scale
+
+% Set the viewing angle.
+% 45 is the azimuth angle.
+% 30 is the elevation angle.
+view(45, 30)         % set azimuth and elevation
+
+% Add labels and title.
+xlabel('X')
+ylabel('Y')
+zlabel('Z')
+title('Customized 3D Surface Plot')
+
+
+============================================================
+SECTION 9: Annotating a Maximum Point
+============================================================
+
+% Create data.
+x = 0:0.1:10;
+y = sin(x);
+
+% Plot the curve.
+figure;
+plot(x, y)
+grid on
+xlabel('x')
+ylabel('sin(x)')
+title('Annotating the Maximum Point')
+
+% Find the maximum value of y.
+maxY = max(y);
+
+% Find the index position where y is equal to the maximum value.
+idx = find(y == maxY);
+
+% Add text at the maximum point.
+% FontSize controls the size of the label.
+text(x(idx), maxY, 'Max Point', 'FontSize', 12)
+
+
+============================================================
+SECTION 10: Student Activity 1 - 2D Plotting
+============================================================
+
+% Plot y = sin(x) and y = cos(x) for x = 0:0.1:2*pi.
+x = 0:0.1:2*pi;
+
+% Calculate sine and cosine values.
+y1 = sin(x);
+y2 = cos(x);
+
+% Plot both curves with different line styles and markers.
+figure;
+plot(x, y1, '-b', x, y2, '--r')
+
+% Add labels, title, legend, and grid.
+xlabel('x')
+ylabel('Function value')
+title('Activity 1: Sine and Cosine Plot')
+legend('sin(x)', 'cos(x)')
+grid on
+
+
+============================================================
+SECTION 11: Student Activity 2 - 3D Plotting
+============================================================
+
+% Create meshgrid X and Y for the range -3 to 3.
+[X, Y] = meshgrid(-3:0.1:3, -3:0.1:3);
+
+% Compute Z using the given formula.
+% .^ is used because the operation is element-wise.
+Z = sin(sqrt(X.^2 + Y.^2));
+
+% Plot the surface with surf.
+figure;
+surf(X, Y, Z)
+
+% Apply smooth shading.
+shading interp
+
+% Apply a color map.
+colormap jet
+
+% Display color scale.
+colorbar
+
+% Rotate or set view angle.
+view(45, 30)
+
+% Add labels and title.
+xlabel('X')
+ylabel('Y')
+zlabel('Z')
+title('Activity 2: 3D Surface Plot')
+
+
+============================================================
+SECTION 12: Mini Challenge - 3D Helix
+============================================================
+
+% Create the parameter t.
+t = 0:0.1:10;
+
+% Create x, y, and z coordinates for a helix.
+x = sin(t);
+y = cos(t);
+z = t;
+
+% Plot the 3D helix.
+% 'r' means red line.
+% 'LineWidth', 2 makes the line thicker.
+figure;
+plot3(x, y, z, 'r', 'LineWidth', 2)
+
+% Set the 3D viewing angle.
+view(60, 30)
+
+% Add labels, title, and grid.
+xlabel('X')
+ylabel('Y')
+zlabel('Z')
+title('Mini Challenge: 3D Helix')
+grid on
+
+
+============================================================
+SECTION 13: Optional Surface Plot from Mini Challenge
+============================================================
+
+% Create X and Y grid values.
+[X, Y] = meshgrid(-3:0.1:3, -3:0.1:3);
+
+% Compute Z using the formula from the slide.
+% .* means element-wise multiplication.
+% .^ means element-wise power.
+Z = X .* exp(-X.^2 - Y.^2);
+
+% Visualize the surface.
+figure;
+surf(X, Y, Z)
+
+% Improve the appearance of the surface.
+shading interp
+colormap jet
+colorbar
+
+% Add labels and title.
+xlabel('X')
+ylabel('Y')
+zlabel('Z')
+title('Mini Challenge: Surface Plot')
+
+% Optional overlay example using hold on.
+% This shows how to place another surface in the same figure.
+hold on
+Z2 = -Z;
+surf(X, Y, Z2)
+hold off
+
+% Adjust the view.
+view(45, 30)
+grid on
+
+
+============================================================
+QUICK NOTES ON IMPORTANT MATLAB PLOTTING COMMANDS
+============================================================
+
+% plot(x, y) creates a 2D line plot.
+% plot3(x, y, z) creates a 3D line plot.
+% scatter(x, y, size, 'filled') creates a scatter plot.
+% stem(x, y) creates a discrete signal plot.
+% subplot(m,n,p) divides a figure into m rows and n columns, then selects plot p.
+% xlabel('text') labels the x-axis.
+% ylabel('text') labels the y-axis.
+% zlabel('text') labels the z-axis in 3D plots.
+% title('text') adds a title to a plot.
+% legend('name1','name2') labels multiple curves.
+% grid on displays gridlines.
+% surf(X,Y,Z) creates a 3D surface plot.
+% shading interp smooths the surface colors.
+% colormap jet applies the jet color map.
+% colorbar shows the color scale.
+% view(azimuth,elevation) changes the 3D viewing angle.
+% hold on keeps the current plot so another plot can be added.
+% hold off stops adding new plots to the same axes.
+
+END OF FILE
