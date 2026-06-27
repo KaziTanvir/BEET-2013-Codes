@@ -1,0 +1,341 @@
+% ============================================================
+% MATLAB Topic 01 - Extracted MATLAB Codes with Explanation Comments
+% Source file: MATLAB - Topic 01.pdf
+% Notes:
+%   1. Lines starting with % are explanation comments.
+%   2. Command-window prompts such as >> were removed.
+%   3. Some snippets were arranged into runnable sections.
+%   4. Semicolons suppress output. Remove ; if you want to see the value.
+% ============================================================
+
+
+%% ============================================================
+%% 1. Basic MATLAB syntax and variable assignment
+%% ============================================================
+
+% MATLAB is case-sensitive, so A and a are different variables.
+% The semicolon ; suppresses output in the Command Window.
+
+a = 10;          % Assign the value 10 to variable a
+b = 5;           % Assign the value 5 to variable b
+c = a + b        % Add a and b. No semicolon, so MATLAB displays c
+
+
+%% ============================================================
+%% 2. Creating and using arrays / vectors
+%% ============================================================
+
+% A 1-D array is commonly called a vector in MATLAB.
+% A row vector stores values in one row.
+
+x = [1 2 3 4 5]     % Create a row vector with 5 elements
+
+% Row vector: elements are separated by spaces or commas.
+row = [1 2 3];
+
+% Column vector: elements are separated by semicolons.
+col = [1; 2; 3];
+
+% MATLAB uses 1-based indexing.
+% This means the first element is accessed using index 1, not 0.
+
+first_value = x(1)      % Access the first element of x
+last_value  = x(end)    % Access the last element of x
+
+% Array operations apply to each element of the array.
+
+x_plus_2 = x + 2        % Add 2 to every element of x
+x_times_2 = x .* 2      % Multiply every element of x by 2
+
+
+%% ============================================================
+%% 3. Creating and using matrices
+%% ============================================================
+
+% A matrix is a 2-D array with rows and columns.
+% Semicolons separate rows inside the square brackets.
+
+A = [1 2 3;
+     4 5 6;
+     7 8 9];
+
+% Find the size of matrix A.
+% The output is [number_of_rows number_of_columns].
+
+matrix_size = size(A)
+
+% Access the element in row 2, column 3.
+% For matrix A, this value is 6.
+
+value_row2_col3 = A(2,3)
+
+% Transpose of A.
+% The apostrophe ' changes rows into columns and columns into rows.
+
+B = A';
+
+% Matrix multiplication.
+% This follows matrix algebra rules.
+
+C = A * B
+
+% Element-wise multiplication.
+% This multiplies matching elements of A and B.
+
+D = A .* B
+
+
+%% ============================================================
+%% 4. MATLAB as a calculator: basic arithmetic
+%% ============================================================
+
+% MATLAB can be used like a scientific calculator.
+% Type the expression and press Enter.
+
+addition_result = 8 + 2          % Addition
+subtraction_result = 10 - 3      % Subtraction
+multiplication_result = 4 * 5    % Multiplication
+division_result = 20 / 4         % Division
+power_result = 3^2               % Power: 3 squared
+
+
+%% ============================================================
+%% 5. Built-in mathematical functions
+%% ============================================================
+
+% MATLAB provides many ready-to-use mathematical functions.
+
+sqrt_result = sqrt(25)       % Square root of 25
+abs_result = abs(-7)         % Absolute value of -7
+exp_result = exp(1)          % Exponential value e^1
+natural_log = log(10)        % Natural logarithm of 10
+base10_log = log10(1000)     % Base-10 logarithm of 1000
+
+
+%% ============================================================
+%% 6. Parentheses and calculation priority
+%% ============================================================
+
+% Parentheses control which calculation is done first.
+% These two expressions give different results.
+
+result_with_parentheses = (4 + 2) * 5
+result_without_parentheses = 4 + 2 * 5
+
+
+%% ============================================================
+%% 7. Variables, area calculation, and pi
+%% ============================================================
+
+% Variables store values so they can be reused.
+% Here, r stores the radius of a circle.
+
+r = 5;                    % Radius
+area = pi * r^2           % Area of a circle: pi times radius squared
+
+% Important:
+% Do not overwrite built-in constants such as pi.
+% Example of what NOT to do:
+% pi = 3
+
+
+%% ============================================================
+%% 8. Trigonometry in radians
+%% ============================================================
+
+% MATLAB uses radians by default for sin, cos, and tan.
+% pi radians = 180 degrees.
+
+sin_radian = sin(pi/2)     % sin(90 degrees) using radians
+cos_radian = cos(0)        % cos(0 radians)
+tan_radian = tan(pi/4)     % tan(45 degrees) using radians
+
+
+%% ============================================================
+%% 9. Trigonometry in degrees
+%% ============================================================
+
+% Use sind and cosd when the angle is given in degrees.
+
+sin_degree = sind(30)      % sin(30 degrees)
+cos_degree = cosd(60)      % cos(60 degrees)
+
+
+%% ============================================================
+%% 10. M-file script example
+%% ============================================================
+
+% Save this part as example.m if you want to run it as a script.
+% Then type example in the Command Window.
+
+a = 5;          % First number
+b = 10;         % Second number
+c = a + b       % Add a and b
+
+
+%% ============================================================
+%% 11. Vectors and matrices recap
+%% ============================================================
+
+% Row vector example.
+row_vector = [1 2 3];
+
+% Column vector example.
+column_vector = [1; 2; 3];
+
+% Matrix example.
+A = [1 2 3;
+     4 5 6;
+     7 8 9];
+
+
+%% ============================================================
+%% 12. Indexing and accessing matrix elements
+%% ============================================================
+
+% Access one element from matrix A.
+element_2_3 = A(2,3)       % Element at row 2, column 3
+
+% Access all rows from column 1.
+first_column = A(:,1)
+
+% Access a submatrix.
+% This selects rows 1 to 2 and columns 2 to 3.
+
+sub_matrix = A(1:2,2:3)
+
+% Access the last row of A.
+% end means the last row or last column, depending on position.
+
+last_row = A(end, :)
+
+
+%% ============================================================
+%% 13. Element-wise matrix and vector operations
+%% ============================================================
+
+% Create B as the transpose of A so it has the same size as A.
+B = A';
+
+% Element-wise multiplication.
+C = A .* B
+
+% Element-wise division.
+D = A ./ B
+
+% Element-wise power.
+E = A .^ 2
+
+
+%% ============================================================
+%% 14. Matrix algebra operations
+%% ============================================================
+
+% Matrix multiplication.
+F = A * B
+
+% Matrix power.
+% A must be a square matrix for this operation.
+
+G = A ^ 2
+
+
+%% ============================================================
+%% 15. Useful matrix functions and manipulations
+%% ============================================================
+
+% Size of matrix A.
+A_size = size(A)
+
+% Length returns the largest dimension of A.
+A_length = length(A)
+
+% numel returns the total number of elements in A.
+A_total_elements = numel(A)
+
+% Transpose of matrix A.
+A_transpose = A'
+
+% Horizontal concatenation.
+% This places B beside A.
+
+horizontal_concat = [A B]
+
+% Vertical concatenation.
+% This places B below A.
+
+vertical_concat = [A; B]
+
+% Summary operations.
+% By default, these work column by column for a matrix.
+
+column_sum = sum(A)        % Sum of each column
+column_mean = mean(A)      % Mean of each column
+column_max = max(A)        % Maximum value of each column
+column_min = min(A)        % Minimum value of each column
+
+
+%% ============================================================
+%% 16. Student Activity 1: Basic calculator
+%% ============================================================
+
+% Compute the expression: (5 + 3)^2 / 4
+
+activity1_expression = (5 + 3)^2 / 4
+
+% Find sin(30 degrees) and cos(45 degrees).
+% Use degree-based functions because the angles are in degrees.
+
+activity1_sin30 = sind(30)
+activity1_cos45 = cosd(45)
+
+
+%% ============================================================
+%% 17. Student Activity 2: M-file script circle_area.m
+%% ============================================================
+
+% Save this section as circle_area.m.
+% The radius is assigned manually.
+
+r = 5;                          % Radius of the circle
+area = pi * r^2;                % Calculate area
+
+% Display the result clearly.
+fprintf('The area of the circle is %.2f\n', area);
+
+
+%% ============================================================
+%% 18. Student Activity 3: Vector and matrix manipulation
+%% ============================================================
+
+% Create a row vector.
+v = [2 4 6 8 10];
+
+% Create a column vector.
+w = [1; 3; 5; 7; 9];
+
+% To add v and w element-wise, transpose w using w'.
+% This changes w from a column vector into a row vector.
+
+vector_sum = v + w'
+
+% Create a 3 by 3 matrix.
+A = [1 2 3;
+     4 5 6;
+     7 8 9];
+
+% Compute the sum of each column.
+sum_each_column = sum(A)
+
+% Compute the mean of all elements.
+% A(:) converts the matrix into one column vector.
+
+mean_all_elements = mean(A(:))
+
+% Transpose the matrix.
+transpose_matrix = A'
+
+
+%% ============================================================
+%% End of extracted MATLAB codes
+%% ============================================================
