@@ -1,0 +1,472 @@
+MATLAB Topic 04: Writing Programs and Functions
+Separated MATLAB Codes with Explanation Comments
+Source file: MATLAB - Topic 4(1).pdf
+
+============================================================
+IMPORTANT NOTE ABOUT MATLAB FUNCTION FILES
+============================================================
+
+In MATLAB, a function must normally be saved in its own .m file.
+The file name must match the function name exactly.
+
+Example:
+Function name: powerCalc
+File name: powerCalc.m
+
+This text file separates the codes from the PDF into clear sections.
+Each MATLAB code includes explanation comments using the % symbol.
+
+
+============================================================
+SECTION 1: Basic MATLAB Function Syntax
+============================================================
+
+% General MATLAB function format:
+% function output = functionName(input)
+%     statements
+% end
+
+% Explanation:
+% function     - tells MATLAB that this file contains a function
+% output       - value returned by the function
+% functionName - name used to call the function
+% input        - value passed into the function
+% end          - closes the function body
+
+
+============================================================
+SECTION 2: Script Example - Electrical Power Calculation
+File name: power_calculation.m
+============================================================
+
+% power_calculation.m
+% This script calculates electrical power using P = V * I.
+% V is voltage in volts.
+% I is current in amperes.
+% P is electrical power in watts.
+
+V = 240;        % Voltage in volts
+I = 5;          % Current in amperes
+P = V * I;      % Power formula
+
+% Display text first, then display the calculated power.
+disp('Electrical Power (Watts):')
+disp(P)
+
+
+============================================================
+SECTION 3: Function to Calculate Electrical Power
+Save as: powerCalc.m
+============================================================
+
+function P = powerCalc(V, I)
+% powerCalc calculates electrical power.
+% V = voltage in volts
+% I = current in amperes
+% P = power in watts
+
+P = V * I;      % Apply the power formula P = V * I
+
+end
+
+
+============================================================
+SECTION 4: Calling powerCalc Function
+Run in Command Window or in a separate script
+============================================================
+
+% This calls the powerCalc function using V = 240 and I = 5.
+% The returned value is stored in result.
+
+result = powerCalc(240, 5);
+disp(result)
+
+
+============================================================
+SECTION 5: Function with Multiple Inputs and Outputs
+Save as: powerEnergy.m
+============================================================
+
+function [P, E] = powerEnergy(V, I, t)
+% powerEnergy calculates electrical power and energy.
+% V = voltage in volts
+% I = current in amperes
+% t = time in hours
+% P = power in watts
+% E = energy in watt-hours
+
+P = V * I;      % Power formula
+E = P * t;      % Energy formula
+
+end
+
+
+============================================================
+SECTION 6: Calling powerEnergy Function
+Run in Command Window or in a separate script
+============================================================
+
+% This calls powerEnergy using:
+% V = 240 volts
+% I = 5 amperes
+% t = 2 hours
+% MATLAB returns two outputs: P and E.
+
+[P, E] = powerEnergy(240, 5, 2);
+
+disp(P)
+disp(E)
+
+
+============================================================
+SECTION 7: Function Using IF-ELSE Logic
+Save as: powerCategory.m
+============================================================
+
+function category = powerCategory(P)
+% powerCategory classifies power consumption.
+% P = power in watts
+% category = text label describing the power level
+
+if P < 500
+    category = 'Low Power';
+elseif P <= 2000
+    category = 'Medium Power';
+else
+    category = 'High Power';
+end
+
+end
+
+
+============================================================
+SECTION 8: Calling powerCategory Function
+Run in Command Window or in a separate script
+============================================================
+
+% This checks the category for 1200 watts.
+% Since 1200 is between 500 and 2000, the result is Medium Power.
+
+type = powerCategory(1200);
+disp(type)
+
+% Alternative display format:
+% Store the returned category in result and print it with a label.
+
+result = powerCategory(1200);
+disp(['Category: ', result])
+
+
+============================================================
+SECTION 9: Function with Loop
+Save as: totalEnergy.m
+============================================================
+
+function totalE = totalEnergy(P, days)
+% totalEnergy calculates total energy consumption over several days.
+% P = power in watts
+% days = number of days
+% totalE = total energy in watt-hours
+
+% Start total energy from zero before adding daily energy.
+totalE = 0;
+
+% Each day has 24 hours.
+% The loop adds P * 24 for each day.
+for d = 1:days
+    totalE = totalE + (P * 24);
+end
+
+end
+
+
+============================================================
+SECTION 10: Calling totalEnergy Function
+Run in Command Window or in a separate script
+============================================================
+
+% This calculates total energy for a 500 W device running for 7 days.
+% Expected result: 500 * 24 * 7 = 84000 Wh.
+
+energy = totalEnergy(500, 7);
+disp(energy)
+
+
+============================================================
+SECTION 11: Anonymous Function - Ohm's Law
+============================================================
+
+% Anonymous functions are useful for quick calculations.
+% This function calculates resistance using Ohm's Law:
+% R = V / I
+% V = voltage
+% I = current
+
+R = @(V, I) V / I;
+
+% Call the anonymous function using V = 12 and I = 2.
+resistance = R(12, 2);
+disp(resistance)
+
+
+============================================================
+SECTION 12: Function with Vector Input
+Save as: vectorPower.m
+============================================================
+
+function P = vectorPower(V, I)
+% vectorPower calculates power for multiple current values.
+% V = voltage in volts
+% I = vector of current values in amperes
+% P = vector of power values in watts
+
+% Use .* for element-wise multiplication.
+% This allows one voltage value to multiply each value in the current vector.
+P = V .* I;
+
+end
+
+
+============================================================
+SECTION 13: Calling vectorPower Function
+Run in Command Window or in a separate script
+============================================================
+
+% Create a vector of current values.
+currents = [2 4 6 8];
+
+% Calculate power for each current when voltage is 240 V.
+power = vectorPower(240, currents);
+
+% Expected output: 480 960 1440 1920
+disp(power)
+
+
+============================================================
+SECTION 14: Nested Function Example
+Save as: efficiencyCalc.m
+============================================================
+
+function eff = efficiencyCalc(outputPower, inputPower)
+% efficiencyCalc calculates efficiency percentage.
+% outputPower = useful output power
+% inputPower = supplied input power
+% eff = efficiency in percentage
+
+% The main function calls the nested function calculate().
+eff = calculate();
+
+    function e = calculate()
+        % Nested function can use variables from the main function.
+        e = (outputPower / inputPower) * 100;
+    end
+
+end
+
+
+============================================================
+SECTION 15: Calling efficiencyCalc Function
+Run in Command Window or in a separate script
+============================================================
+
+% This calculates efficiency when output power is 80 W
+% and input power is 100 W.
+% Expected result: 80 percent.
+
+result = efficiencyCalc(80, 100)
+
+
+============================================================
+SECTION 16: Student Activity - Circle Area Function
+Save as: circleArea.m
+============================================================
+
+function area = circleArea(r)
+% circleArea calculates the area of a circle.
+% r = radius
+% Example:
+% area = circleArea(5)
+
+% Formula for area of a circle:
+% area = pi * r^2
+area = pi * r^2;
+
+end
+
+
+============================================================
+SECTION 17: Run circleArea Function
+Run in Command Window
+============================================================
+
+% Call the function with radius 5.
+% MATLAB returns the area of the circle.
+
+circleArea(5)
+
+
+============================================================
+SECTION 18: Use MATLAB Help Command
+Run in Command Window
+============================================================
+
+% The help command displays the first comment lines inside the function file.
+% This works because circleArea.m contains help text at the top.
+
+help circleArea
+
+
+============================================================
+SECTION 19: Nicer Display Using fprintf
+Run in Command Window or in a separate script
+============================================================
+
+% Store the output of circleArea(10) in variable A.
+A = circleArea(10);
+
+% fprintf displays the result with 2 digits after the decimal point.
+% %.2f means fixed-point number with 2 decimal places.
+% \n moves the cursor to the next line.
+fprintf('Area = %.2f\n', A);
+
+
+============================================================
+SECTION 20: Student Activity - Ohm's Law Function
+Save as: ohmsLawCurrent.m
+============================================================
+
+function I = ohmsLawCurrent(V, R)
+% ohmsLawCurrent calculates current using Ohm's Law.
+% V = voltage in volts
+% R = resistance in ohms
+% I = current in amperes
+%
+% Formula:
+% I = V / R
+
+I = V / R;
+
+end
+
+
+============================================================
+SECTION 21: Calling Ohm's Law Function with 3 Values
+Run in Command Window or in a separate script
+============================================================
+
+% Call the function using three different voltage and resistance values.
+
+I1 = ohmsLawCurrent(12, 6);
+I2 = ohmsLawCurrent(24, 8);
+I3 = ohmsLawCurrent(120, 60);
+
+% Display the calculated current values.
+disp(I1)
+disp(I2)
+disp(I3)
+
+
+============================================================
+SECTION 22: Challenge - Ohm's Law Function with Error Checking
+Save as: ohmsLawCurrentSafe.m
+============================================================
+
+function I = ohmsLawCurrentSafe(V, R)
+% ohmsLawCurrentSafe calculates current using Ohm's Law.
+% This version checks for zero resistance.
+% Division by zero is not allowed in a practical circuit calculation.
+
+if R == 0
+    error('Resistance cannot be zero.')
+else
+    I = V / R;
+end
+
+end
+
+
+============================================================
+SECTION 23: Calling Safe Ohm's Law Function
+Run in Command Window or in a separate script
+============================================================
+
+% Correct use:
+I = ohmsLawCurrentSafe(12, 6);
+disp(I)
+
+% This will show an error message because resistance is zero:
+% I = ohmsLawCurrentSafe(12, 0);
+
+
+============================================================
+SECTION 24: Example of Avoiding Hard-Coded Values
+============================================================
+
+% Hard-coded values are fixed inside a script or function.
+% Functions are better when values are passed as inputs.
+
+% Less reusable script style:
+V = 240;
+I = 5;
+P = V * I;
+disp(P)
+
+% More reusable function style:
+% result = powerCalc(240, 5);
+% result = powerCalc(120, 10);
+% result = powerCalc(48, 2);
+
+
+============================================================
+SECTION 25: Complete Practice Script for Topic 04
+Save as: topic04_practice.m
+============================================================
+
+% This script demonstrates how to call several functions from Topic 04.
+% Make sure these files are saved in the same current folder:
+% powerCalc.m
+% powerEnergy.m
+% powerCategory.m
+% totalEnergy.m
+% vectorPower.m
+% circleArea.m
+% ohmsLawCurrentSafe.m
+
+clc;        % Clear Command Window
+clear;      % Clear workspace variables
+
+% 1. Power calculation
+P = powerCalc(240, 5);
+disp(['Power = ', num2str(P), ' W'])
+
+% 2. Power and energy calculation
+[P2, E2] = powerEnergy(240, 5, 2);
+disp(['Power = ', num2str(P2), ' W'])
+disp(['Energy = ', num2str(E2), ' Wh'])
+
+% 3. Power category
+category = powerCategory(P2);
+disp(['Category: ', category])
+
+% 4. Total energy over 7 days
+weeklyEnergy = totalEnergy(500, 7);
+disp(['Weekly Energy = ', num2str(weeklyEnergy), ' Wh'])
+
+% 5. Vector power calculation
+currents = [2 4 6 8];
+powers = vectorPower(240, currents);
+disp('Power values for multiple currents:')
+disp(powers)
+
+% 6. Circle area
+A = circleArea(10);
+fprintf('Circle Area = %.2f\n', A)
+
+% 7. Ohm's Law with error checking
+current = ohmsLawCurrentSafe(12, 6);
+disp(['Current = ', num2str(current), ' A'])
+
+
+============================================================
+END OF MATLAB TOPIC 04 CODES
+============================================================
