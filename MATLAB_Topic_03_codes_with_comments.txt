@@ -1,0 +1,312 @@
+MATLAB Topic 03: Introduction to Control Structures
+Separated MATLAB Codes with Explanation Comments
+Source: MATLAB - Topic 3.pdf
+
+============================================================
+SECTION 1: Why Control Structures Are Important
+============================================================
+
+% Without control structures, each command must be written separately.
+% This displays numbers from 1 to 5 one by one.
+disp(1)
+disp(2)
+disp(3)
+disp(4)
+disp(5)
+
+% With a for loop, the same task can be done using fewer lines.
+% The loop variable i takes values from 1 to 5.
+% disp(i) displays the current value of i.
+for i = 1:5
+    disp(i)
+end
+
+
+============================================================
+SECTION 2: General Syntax of for Loop
+============================================================
+
+% General form of a for loop:
+% for variable = start : step : end
+%     statements
+% end
+
+% Example:
+% This loop displays numbers from 1 to 5.
+% Since no step size is written, MATLAB uses the default step size of 1.
+for i = 1:5
+    disp(i)
+end
+
+
+============================================================
+SECTION 3: for Loop with Step Size
+============================================================
+
+% This loop starts from 1 and increases by 2 until it reaches 10.
+% The output will be 1, 3, 5, 7, 9.
+% It stops before 11 because 11 is greater than the ending value 10.
+for i = 1:2:10
+    disp(i)
+end
+
+
+============================================================
+SECTION 4: Reverse for Loop
+============================================================
+
+% This loop starts from 10 and decreases by 1 until it reaches 1.
+% A negative step size is used for counting backward.
+for i = 10:-1:1
+    disp(i)
+end
+
+
+============================================================
+SECTION 5: Summation Using for Loop
+============================================================
+
+% Initialize total as 0 before starting the loop.
+% The loop adds numbers from 1 to 5.
+% After the loop ends, total becomes 15.
+total = 0;
+
+for i = 1:5
+    total = total + i;
+end
+
+% Display the final total.
+disp(total)
+
+
+============================================================
+SECTION 6: Basic if Statement
+============================================================
+
+% Assign a value to x.
+x = 10;
+
+% The if statement checks whether x is greater than 5.
+% If the condition is true, MATLAB executes the disp command.
+if x > 5
+    disp('x is greater than 5')
+end
+
+
+============================================================
+SECTION 7: if, elseif, else Statement
+============================================================
+
+% Assign a mark value.
+mark = 72;
+
+% MATLAB checks the conditions from top to bottom.
+% Only one block will run.
+% Since 72 is not greater than or equal to 80,
+% MATLAB checks the next condition.
+% Since 72 is greater than or equal to 60, grade becomes B.
+if mark >= 80
+    grade = 'A';
+elseif mark >= 60
+    grade = 'B';
+else
+    grade = 'C';
+end
+
+% Display the assigned grade.
+disp(grade)
+
+
+============================================================
+SECTION 8: Relational Operators in Conditions
+============================================================
+
+% Common relational operators in MATLAB:
+% >   greater than
+% <   less than
+% >=  greater than or equal to
+% <=  less than or equal to
+% ==  equal to
+% ~=  not equal to
+
+% Example:
+% This checks whether a number is not equal to zero.
+x = 8;
+
+if x ~= 0
+    disp('x is not zero')
+end
+
+
+============================================================
+SECTION 9: Logical Operators
+============================================================
+
+% Logical operators are used to combine conditions.
+% && means AND. Both conditions must be true.
+% || means OR. At least one condition must be true.
+% ~ means NOT. It reverses a logical condition.
+
+% Example using AND:
+% This checks whether x is between 0 and 10.
+x = 5;
+
+if x > 0 && x < 10
+    disp('Valid range')
+end
+
+% Example using OR:
+% This checks whether x is less than 0 or greater than 100.
+x = 120;
+
+if x < 0 || x > 100
+    disp('Value is outside the expected range')
+end
+
+% Example using NOT:
+% This checks whether x is not negative.
+x = 10;
+
+if ~(x < 0)
+    disp('x is not negative')
+end
+
+
+============================================================
+SECTION 10: Combining Loops and Branches
+============================================================
+
+% This loop checks numbers from 1 to 10.
+% mod(i,2) gives the remainder after dividing i by 2.
+% If the remainder is 0, the number is even.
+% Otherwise, the number is odd.
+for i = 1:10
+    if mod(i,2) == 0
+        disp('Even')
+    else
+        disp('Odd')
+    end
+end
+
+
+============================================================
+SECTION 11: Student Activity 1
+Use a for loop to display numbers 1 to 20
+============================================================
+
+% This loop displays all numbers from 1 to 20.
+for i = 1:20
+    disp(i)
+end
+
+
+============================================================
+SECTION 12: Student Activity 2
+Use if to check whether a number is positive or negative
+============================================================
+
+% Assign any number to x.
+x = -7;
+
+% Check whether x is positive, negative, or zero.
+if x > 0
+    disp('Positive number')
+elseif x < 0
+    disp('Negative number')
+else
+    disp('Zero')
+end
+
+
+============================================================
+SECTION 13: Student Activity 3
+Combine loop and branch to check multiples of 3
+============================================================
+
+% This loop displays numbers from 1 to 15.
+% It prints "Multiple of 3" when the number is divisible by 3.
+for i = 1:15
+    disp(i)
+
+    if mod(i,3) == 0
+        disp('Multiple of 3')
+    end
+end
+
+
+============================================================
+SECTION 14: Improved Version of Student Activity 3
+============================================================
+
+% This version prints each number with a clear message.
+% num2str(i) converts the number into text so it can be displayed with words.
+for i = 1:15
+    if mod(i,3) == 0
+        disp([num2str(i), ' is a Multiple of 3'])
+    else
+        disp([num2str(i), ' is not a Multiple of 3'])
+    end
+end
+
+
+============================================================
+SECTION 15: while Loop Example
+============================================================
+
+% Topic 3 mentions while loops as condition-based repetition.
+% A while loop keeps running while the condition is true.
+% This example displays numbers from 1 to 5.
+
+i = 1;
+
+while i <= 5
+    disp(i)
+    i = i + 1;
+end
+
+
+============================================================
+SECTION 16: Engineering-Style Example
+Temperature Safety Check
+============================================================
+
+% This example shows how branching can be used in an engineering situation.
+% The program checks whether a temperature value is safe or unsafe.
+
+temperature = 85;
+
+if temperature < 60
+    disp('Temperature is low')
+elseif temperature >= 60 && temperature <= 80
+    disp('Temperature is within normal range')
+else
+    disp('Warning: Temperature is high')
+end
+
+
+============================================================
+SECTION 17: Engineering-Style Example
+Loop with Decision Logic
+============================================================
+
+% This example checks several voltage readings.
+% If a voltage is below 220 V, it is marked as low.
+% If it is between 220 V and 240 V, it is normal.
+% If it is above 240 V, it is high.
+
+voltage = [210 225 230 245 250];
+
+for i = 1:length(voltage)
+    if voltage(i) < 220
+        disp([num2str(voltage(i)), ' V: Low voltage'])
+    elseif voltage(i) <= 240
+        disp([num2str(voltage(i)), ' V: Normal voltage'])
+    else
+        disp([num2str(voltage(i)), ' V: High voltage'])
+    end
+end
+
+
+============================================================
+END OF MATLAB TOPIC 03 CODES
+============================================================
